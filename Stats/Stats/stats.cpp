@@ -1,18 +1,19 @@
 #include "stats.h"
 #include <cmath>
 #include <iostream>
+
 Stats1::Stats1()
 {
 	Sum = 0;
-	NumberOfElements = 0;
-	MinusMean = 0;
+	NumberOfElements = 0;	
+	x_Squared = 0;
 }
 
 void Stats1::add(double x)
 {
 	Sum += x;
 	NumberOfElements += 1;
-	MinusMean += pow((x - mean()), 2);
+	x_Squared += pow(x, 2);
 }
 
 double Stats1::mean()
@@ -22,7 +23,9 @@ double Stats1::mean()
 
 double Stats1::stdev()
 {
-	return sqrt(MinusMean / NumberOfElements);
+	double mean2 = mean();
+	double stdeviation = sqrt(abs((x_Squared + (NumberOfElements * pow(mean2, 2)) - (2 * mean2 * Sum)) / NumberOfElements));
+	return stdeviation;
 }
 
 Stats2::Stats2()
@@ -46,15 +49,14 @@ double Stats2::cov()
 
 double Stats2::corr()
 {
-	covariance = cov();
-	return covariance / (x.stdev() * y.stdev());
+	return cov() / (x.stdev() * y.stdev());
 }
 
 void Stats2::parameters()
 {
-	covariance = cov();
-	m = covariance / pow(x.stdev(),2);
-	c = y.mean() - (m * x.mean());
+	//Calculates the best fitting straight line for the given data points.
+	double m = cov() / pow(x.stdev(),2);
+	double c = y.mean() - (m * x.mean());
 
 	std::cout << "Equation: y = "  << m << " * " << "x + " << c << std::endl;
 }

@@ -11,7 +11,7 @@ class Stats1
 	private:
 		double Sum;
 		double NumberOfElements;
-		double MinusMean;
+		double x_Squared;
 };
 
 class Stats2
@@ -20,15 +20,13 @@ class Stats2
 		void add(double a, double b);
 		double cov();
 		double corr();
-		Stats2();
 		void parameters();
+		Stats2();
 
 	private:
 		Stats1 x;
 		Stats1 y;
 		double Sum;
 		double NumberOfElements;
-		double covariance;
-		double m;
-		double c;
+
 };

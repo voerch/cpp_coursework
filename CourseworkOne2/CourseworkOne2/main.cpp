@@ -13,7 +13,6 @@ int main()
 	}
 
 	cout << s.mean() << endl;
-
 	system("pause");
 	return 0;
 
