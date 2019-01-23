@@ -115,7 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Stats\Stats\stats.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NRG.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NRG.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
