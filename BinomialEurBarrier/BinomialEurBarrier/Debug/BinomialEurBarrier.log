@@ -1,0 +1,5 @@
+﻿  UpAndOutEurCall.cpp
+c:\users\mbe31\source\repos\binomialeurbarrier\binomialeurbarrier\upandouteurcall.cpp(46): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+c:\users\mbe31\source\repos\binomialeurbarrier\binomialeurbarrier\upandouteurcall.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  BinomialEurBarrier.vcxproj -> c:\users\mbe31\source\repos\BinomialEurBarrier\Debug\BinomialEurBarrier.exe
+  BinomialEurBarrier.vcxproj -> c:\users\mbe31\source\repos\BinomialEurBarrier\Debug\BinomialEurBarrier.pdb (Partial PDB)
