@@ -1,0 +1,4 @@
+﻿  HestonModel.cpp
+c:\users\mbe31\source\repos\hestonmodel\hestonmodel\hestonmodel.h(26): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  HestonModel.vcxproj -> c:\users\mbe31\source\repos\HestonModel\Debug\HestonModel.exe
+  HestonModel.vcxproj -> c:\users\mbe31\source\repos\HestonModel\Debug\HestonModel.pdb (Partial PDB)

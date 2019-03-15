@@ -8,8 +8,8 @@ class PathDepOption
    public:
       double T;
       int m;
-      double PriceByMC(BSModel Model, long N);
-	  double Delta(BSModel Model);
+      double PriceByMC(BSModel Model, long N, double epsilon);
+
       virtual double Payoff(SamplePath& S)=0;
 };
 

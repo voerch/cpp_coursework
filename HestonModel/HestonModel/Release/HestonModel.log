@@ -1,0 +1,8 @@
+﻿  main.cpp
+c:\users\mbe31\source\repos\hestonmodel\hestonmodel\HestonModel.h(26): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating code
+  2 of 126 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  HestonModel.vcxproj -> c:\users\mbe31\source\repos\HestonModel\Release\HestonModel.exe
