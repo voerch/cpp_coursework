@@ -47,5 +47,8 @@
     <ClInclude Include="EurOption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Solver03.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

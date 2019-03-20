@@ -122,6 +122,7 @@
     <ClInclude Include="error.h" />
     <ClInclude Include="normalRandomGenerator.h" />
     <ClInclude Include="EurOption.h" />
+    <ClInclude Include="Solver03.h" />
     <ClInclude Include="stats.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

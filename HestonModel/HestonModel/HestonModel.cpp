@@ -16,9 +16,8 @@ double CorrelatedGauss(double first, double rho)
 }
 
 
-void HestonModel::GenerateSamplePath(double T, int m, SamplePath& S)
+void HestonModel::GenerateSamplePath(double T, int m, SamplePath& S, SamplePath& Vol)
 {
-   SamplePath Vol(m);
    double v0 = sigma0Sq;
    double v = sigmaSq;
    double St = S0;

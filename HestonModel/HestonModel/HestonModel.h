@@ -23,10 +23,10 @@ class HestonModel
 			a = a_;
 			eta = eta_;
 			rho = rho_;
-			srand(time(NULL));
+			
 		}
       
-		void GenerateSamplePath(double T,int m, SamplePath& S);
+		void GenerateSamplePath(double T,int m, SamplePath& S, SamplePath& V);
 	
 };
 
