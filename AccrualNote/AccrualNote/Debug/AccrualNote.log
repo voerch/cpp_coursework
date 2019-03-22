@@ -1,4 +1,12 @@
-﻿  PathDepOption01.cpp
-c:\users\mbe31\source\repos\accrualnote\accrualnote\bsmodel01.h(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  AccrualNote.vcxproj -> C:\Users\mbe31\source\repos\AccrualNote\Debug\AccrualNote.exe
-  AccrualNote.vcxproj -> C:\Users\mbe31\source\repos\AccrualNote\Debug\AccrualNote.pdb (Partial PDB)
+﻿  stats.cpp
+  PathDepOption01.cpp
+\\homes.student.eecs.qmul.ac.uk\mbe31\source\repos\cpp_coursework\accrualnote\accrualnote\bsmodel01.h(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  normalRandomGenerator.cpp
+  main.cpp
+\\homes.student.eecs.qmul.ac.uk\mbe31\source\repos\cpp_coursework\accrualnote\accrualnote\bsmodel01.h(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  BSModel01.cpp
+\\homes.student.eecs.qmul.ac.uk\mbe31\source\repos\cpp_coursework\accrualnote\accrualnote\bsmodel01.h(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  LINK : \\homes.student.eecs.qmul.ac.uk\mbe31\source\repos\cpp_coursework\AccrualNote\Debug\AccrualNote.exe not found or not built by the last incremental link; performing full link
+  AccrualNote.vcxproj -> \\homes.student.eecs.qmul.ac.uk\mbe31\source\repos\cpp_coursework\AccrualNote\Debug\AccrualNote.exe
+  AccrualNote.vcxproj -> \\homes.student.eecs.qmul.ac.uk\mbe31\source\repos\cpp_coursework\AccrualNote\Debug\AccrualNote.pdb (Partial PDB)

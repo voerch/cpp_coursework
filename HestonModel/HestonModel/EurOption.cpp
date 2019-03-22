@@ -21,8 +21,6 @@ void Rescale(SamplePath& S, double x)
 double EurOption::PriceByMC(HestonModel Model, long N, double epsilon)
 {
 	Stats1 Acc;
-	Stats1 Del;
-	Stats1 Gam;
 	SamplePath S(m);
 	SamplePath Vol(m);
 
@@ -30,53 +28,48 @@ double EurOption::PriceByMC(HestonModel Model, long N, double epsilon)
 	{
 		Model.GenerateSamplePath(T, m, S, Vol);
 		Acc.add(Payoff(S));
-		Rescale(S, 1+epsilon);
-		Del.add(Payoff(S));
-		Rescale(S, (1 - epsilon)/(1 + epsilon));
-		Gam.add(Payoff(S));
-		Rescale(S, 1 / (1 - epsilon));
 	}
 	
 	Price = exp(-Model.r*T)*Acc.mean();
-	double PriceError = (exp(-Model.r*T) * Acc.stdevP()) / sqrt(N - 1.0) / Price;
-	
-	double Delta = exp(-Model.r*T)*(Del.mean() - Acc.mean())/(Model.S0 * epsilon);
-	double DeltaError = exp(-Model.r*T) * (Del.stdevP() - Acc.stdevP()) / sqrt(N - 1.0) / Delta;
-	
-	double Gamma = exp(-Model.r*T) * (Del.mean() - (2 * Acc.mean()) + Gam.mean()) / pow(Model.S0 * epsilon, 2);
-	double GammaError = exp(-Model.r*T) * (Del.stdevP() - (2 * Acc.stdevP()) + Gam.stdevP()) / sqrt(N - 1.0) / Delta;
+	PriceError = (exp(-Model.r*T) * Acc.stdevP()) / sqrt(N - 1.0);
 	
 
-	cout << "Price: " << Price << " +/- " << PriceError << endl;
-	cout << "Delta: " << Delta << " +/- " << DeltaError << endl;
-	cout << "Gamma: " << Gamma << " +/- " << GammaError << endl;
-
-	
-	return Price;;
+	return Price;
 }
 
-//double EurOption::VegaByMC(HestonModel Model, long N, double epsilon)
-//{
-//	Stats1 Acc;
-//	Stats1 Veg;
-//	SamplePath S(m);
-//	SamplePath Vol(m);
-//
-//	for (long i = 0; i < N; i++)
-//	{
-//		Model.GenerateSamplePath(T, m, S, Vol);
-//		Acc.add(Payoff(S));
-//
-//		Model.sigma0Sq = Model.sigma0Sq * (1 + epsilon);
-//		Model.sigmaSq = Model.sigmaSq * (1 + epsilon);
-//		Model.GenerateSamplePath(T, m, S, Vol);
-//		Veg.add(Payoff(S));
-//	}
-//	Vega = exp(-Model.r*T)*(Veg.mean() - Acc.mean()) / (Model.sigma0Sq * epsilon);
-//	double VegaError = exp(-Model.r*T) * (Veg.stdevP() - Acc.stdevP()) / sqrt(N - 1.0) / Vega;
-//
-//	cout << "Vega: " << Vega << " +/- " << VegaError << endl;
-//
-//	return Vega;
-//}
+double EurOption::VolatilitySmile(HestonModel Model, long N, double epsilon, SamplePath S)
+{
+	Stats1 Acc;
 
+	for (long i = 0; i<N; i++)
+	{
+		Acc.add(Payoff(S));
+	}
+
+	Price = exp(-Model.r*T)*Acc.mean();
+	PriceError = (exp(-Model.r*T) * Acc.stdevP()) / sqrt(N - 1.0);
+
+	return Price;
+}
+
+double N(double x)
+{
+	return 0.5 * erfc(-x * sqrt(0.5));
+}
+
+double CallOption::d_plus(double S0, double sigma, double r)
+{
+	return (log(S0 / K) +
+		(r + 0.5*pow(sigma, 2.0))*T)
+		/ (sigma*sqrt(T));
+}
+
+double CallOption::d_minus(double S0, double sigma, double r)
+{
+	return d_plus(S0, sigma, r) - sigma*sqrt(T);
+}
+
+double CallOption::PriceByBSFormula(double S0, double sigma, double r)
+{
+	return S0*N(d_plus(S0, sigma, r))- K*exp(-r*T)*N(d_minus(S0, sigma, r));
+}

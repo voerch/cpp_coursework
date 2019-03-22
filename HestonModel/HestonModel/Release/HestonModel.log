@@ -1,13 +1,8 @@
-﻿  main.cpp
-c:\users\mberk\documents\visual studio 2017\source\repos\voerch\cpp_coursework\hestonmodel\hestonmodel\solver03.h(9): error C2227: left of '->Value' must point to class/struct/union/generic type
-  c:\users\mberk\documents\visual studio 2017\source\repos\voerch\cpp_coursework\hestonmodel\hestonmodel\solver03.h(9): note: type is 'Function (__cdecl *)'
-          with
-          [
-              Function=Intermediary (double,double,int,long,double,double,double,double,double,double,double,double,double)
-          ]
-  c:\users\mberk\documents\visual studio 2017\source\repos\voerch\cpp_coursework\hestonmodel\hestonmodel\main.cpp(27): note: see reference to function template instantiation 'double SolveByBisect<Intermediary(double,double,int,long,double,double,double,double,double,double,double,double,double)>(Function (__cdecl *),double,double,double,double)' being compiled
-          with
-          [
-              Function=Intermediary (double,double,int,long,double,double,double,double,double,double,double,double,double)
-          ]
-  EurOption.cpp
+﻿  EurOption.cpp
+  main.cpp
+  Generating code
+  56 of 221 functions (25.3%) were compiled, the rest were copied from previous compilation.
+    13 functions were new in current compilation
+    30 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  HestonModel.vcxproj -> C:\Users\mbe31\Downloads\cpp_coursework\HestonModel\Release\HestonModel.exe

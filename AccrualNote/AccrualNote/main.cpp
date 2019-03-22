@@ -12,7 +12,7 @@ int main()
    int m=252;
    AccrualNote Opt(T, K_min, K_max, m, Principal);
 
-   long N=1000000;
+   long N=100000;
    double epsilon = 0.001;
 
    Opt.PriceByMC(Model, N, epsilon);

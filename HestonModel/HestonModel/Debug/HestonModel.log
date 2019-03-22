@@ -1,12 +1,3 @@
 ﻿  main.cpp
-c:\users\mberk\documents\visual studio 2017\source\repos\voerch\cpp_coursework\hestonmodel\hestonmodel\solver03.h(7): error C2228: left of '.Value' must have class/struct/union
-  c:\users\mberk\documents\visual studio 2017\source\repos\voerch\cpp_coursework\hestonmodel\hestonmodel\solver03.h(7): note: type is 'Function'
-          with
-          [
-              Function=Intermediary (__cdecl *)(double,double,int,long,double,double,double,double,double,double,double,double)
-          ]
-  c:\users\mberk\documents\visual studio 2017\source\repos\voerch\cpp_coursework\hestonmodel\hestonmodel\main.cpp(56): note: see reference to function template instantiation 'double SolveByBisect<Intermediary(__cdecl *)(double,double,int,long,double,double,double,double,double,double,double,double)>(Function,double,double,double,double)' being compiled
-          with
-          [
-              Function=Intermediary (__cdecl *)(double,double,int,long,double,double,double,double,double,double,double,double)
-          ]
+  HestonModel.vcxproj -> C:\Users\mbe31\Downloads\cpp_coursework\HestonModel\Debug\HestonModel.exe
+  HestonModel.vcxproj -> C:\Users\mbe31\Downloads\cpp_coursework\HestonModel\Debug\HestonModel.pdb (Partial PDB)

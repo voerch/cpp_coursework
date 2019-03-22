@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Exe6-3" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\Exe6-3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\Project24" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="..\..\BSEq.cpp" />
+		<Unit filename="..\..\BSEq.h" />
+		<Unit filename="..\..\BSModel01.h" />
+		<Unit filename="..\..\Exe6-3_Main24.cpp" />
+		<Unit filename="..\..\ExplicitMethod.cpp" />
+		<Unit filename="..\..\ExplicitMethod.h" />
+		<Unit filename="..\..\FDMethod.cpp" />
+		<Unit filename="..\..\FDMethod.h" />
+		<Unit filename="..\..\Option.cpp" />
+		<Unit filename="..\..\Option.h" />
+		<Unit filename="..\..\ParabPDE.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -38,15 +38,15 @@ double PathDepOption::PriceByMC(BSModel Model, long N, double epsilon)
 	}
 	
 	double Price = exp(-Model.r*T)*Acc.mean();
-	double PriceError = (exp(-Model.r*T) * Acc.stdevP()) / sqrt(N - 1.0) / Price * 100;
+	double PriceError = (exp(-Model.r*T) * Acc.stdevP()) / sqrt(N - 1.0);
 	double Delta = exp(-Model.r*T)*(Del.mean() - Acc.mean())/(Model.S0 * epsilon);
-	double DeltaError = exp(-Model.r*T) * (Del.stdevP() - Acc.stdevP()) / sqrt(N - 1.0) / Delta * 100;
+	double DeltaError = exp(-Model.r*T) * (Del.stdevP() - Acc.stdevP()) / sqrt(N - 1.0);
 	double Gamma = exp(-Model.r*T) * (Del.mean() - (2 * Acc.mean()) + Gam.mean()) / pow(Model.S0 * epsilon, 2);
-	double GammaError = exp(-Model.r*T) * (Del.stdevP() - (2 * Acc.stdevP()) + Gam.stdevP()) / sqrt(N - 1.0) / Gamma * 100;
+	double GammaError = exp(-Model.r*T) * (Del.stdevP() - (2 * Acc.stdevP()) + Gam.stdevP()) / sqrt(N - 1.0);
 	
-	cout << "Price:" << Price << " +/- " << PriceError << "%" << endl;
-	cout << "Delta:" << Delta << " +/- " << DeltaError << "%" << endl;
-	cout << "Gamma:" << Gamma << " +/- " << DeltaError << "%" << endl;
+	cout << "Price:" << Price << " +/- " << PriceError << endl;
+	cout << "Delta:" << Delta << " +/- " << DeltaError << endl;
+	cout << "Gamma:" << Gamma << " +/- " << GammaError << endl;
 	
 	return Price;
 }

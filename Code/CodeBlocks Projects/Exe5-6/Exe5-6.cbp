@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Exe5-6" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\Exe5-6" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\Project22" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="..\..\BSModel01.cpp" />
+		<Unit filename="..\..\BSModel01.h" />
+		<Unit filename="..\..\Exe5-6_BarrierCall.cpp" />
+		<Unit filename="..\..\Exe5-6_BarrierCall.h" />
+		<Unit filename="..\..\Exe5-6_EurCall.cpp" />
+		<Unit filename="..\..\Exe5-6_EurCall.h" />
+		<Unit filename="..\..\Exe5-6_Main22.cpp" />
+		<Unit filename="..\..\Exe5-6_PathDepOption04.cpp" />
+		<Unit filename="..\..\Exe5-6_PathDepOption04.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

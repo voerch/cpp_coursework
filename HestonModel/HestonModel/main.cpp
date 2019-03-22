@@ -1,37 +1,11 @@
 #include <iostream>
 #include "EurOption.h"
 #include "Solver03.h"
-
+#include <fstream>
+#include <iomanip>
 using namespace std;
-class Intermediary : public CallOption
-{
-private:
-	double S0, r, sigma0Sq, sigmaSq, timestep, a, eta, rho, epsilon;
-	long N;
-public:
-	Intermediary(double T_, double K_, int m_, long N_, double epsilon_, double S0_, double r_, double sigmaSq_, double timestep_, double a_, double eta_, double rho_) :CallOption(T_, K_, m_)
-	{
-		S0 = S0_;
-		r = r_;
-		sigmaSq = sigmaSq_;
-		timestep = timestep_;
-		a = a_;
-		eta = eta_;
-		rho = rho_;
-		N = N_;
-		epsilon = epsilon_;
-	}
 
-	double Value(double sigma0Sq)
-	{
-		HestonModel Model(S0, r, sigma0Sq, sigmaSq, timestep, a, eta, rho);
-		return PriceByMC(Model, N, epsilon);
-	}
-	double Deriv(double sigma0Sq)
-	{
-		return 0;
-	}
-};
+
 
 int main()
 {
@@ -43,17 +17,45 @@ int main()
 
    CallOption Opt(T, K, m);
 
-   long N=10000;
+   long N=1000000;
    double epsilon = 0.001;
-   //Opt.VegaByMC(Model, N, epsilon);
    Opt.PriceByMC(Model, N, epsilon);
+   cout << "Price: " << Opt.Price << " +/- " << Opt.PriceError << endl;
    
-   Intermediary func(double T, double K, int m, long N, double epsilon, double S0, double r, double sigmaSq, double timestep, double a, double eta, double rho);
+   Intermediary func(T, K, m, S0, r);
 
-   double Acc = 0.001;
+   double Acc = 0.0001;
    double LEnd = 0.01, REnd = 1.0;
-   double Tgt = 12.56;
-   std::cout << "Implied vol by bisect: " << SolveByBisect(&func, Tgt, LEnd, REnd, Acc) << endl;
+   double Tgt = Opt.Price;
+   double ImpliedVol = SolveByBisect(&func, Tgt, LEnd, REnd, Acc) * 100;
+   double TgtLow = Opt.Price - Opt.PriceError;
+   cout << fixed << setprecision(10);
+   double ImpliedVolError = ImpliedVol - (SolveByBisect(&func, TgtLow, LEnd, REnd, Acc) * 100);
+   std::cout << "Implied volatility:  " << ImpliedVol << " +/- " << ImpliedVolError <<endl;
+
+
+   double impVol[90];
+   SamplePath S(m);
+   SamplePath Vol(m);
+   Model.GenerateSamplePath(T, m, S, Vol);
+   for (K = 60; K <= 150; K++) {
+
+	   CallOption NewOpt(T, K, m);
+	   Tgt = NewOpt.VolatilitySmile(Model, N, epsilon, S);
+
+	   Intermediary func(T, K, m, S0, r);
+	   impVol[int(K)-60] = SolveByBisect(&func, Tgt, LEnd, REnd, Acc) * 100;
+   }
+
+   ofstream myfile("impvol.csv");
+   if (myfile.is_open())
+   {
+	   for (int count = 0; count <= 90; count++) {
+		   myfile << count + 60 << "," << impVol[count] << endl;
+	   }
+	   myfile.close();
+   }
+
 
    system("pause");
    return 0;
