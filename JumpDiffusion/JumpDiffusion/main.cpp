@@ -2,7 +2,16 @@
 #include "EurOption.h"
 #include "Solver03.h"
 #include <fstream>
+#include <vector>
+#include "JDModel.h"
 using namespace std;
+
+double impliedVol(Intermediary func, double Tgt)
+{
+	double Acc = 0.0001, LEnd = 0.01, REnd = 1.0;
+
+	return SolveByBisect(&func, Tgt, LEnd, REnd, Acc);
+}
 
 int main()
 {
@@ -10,37 +19,41 @@ int main()
 	double lambda = 1.0, m = 0.05, s = 0.3;
 	double K = 105.0, T = 0.5;
 	int Counter = 10000;
-	EurCall Option(T, K);
-	double Price = Option.PriceByJDFormula(S0, sigma, r, s, m, lambda, Counter);
-	cout << "Price: " << Price << endl;
+
+	EurOption* OptionPtr;
+	OptionPtr = new EurCall(T, K);
+
+	double Price = OptionPtr->PriceByJDFormula(S0, sigma, r, s, m, lambda, Counter);
+	cout << "Analytic Price: " << Price << endl;
 	
-	
-	Intermediary func(T, K, S0, r);
+	JDModel Model(S0, sigma, r, s, m, lambda);
+	int samplingDates = 52;
+	int nPaths = 76000;
+	Price = OptionPtr->PriceByJDMC(Model, samplingDates, nPaths);
 
-	double Acc = 0.0001;
-	double LEnd = 0.01, REnd = 1.0;
-	double Tgt = Price;
-	double ImpliedVol = SolveByBisect(&func, Tgt, LEnd, REnd, Acc) * 100;
-	std::cout << "Implied volatility:  " << ImpliedVol << endl;
-	double impVol[90];
 
-	for (K = 60; K <= 150; K++) {
+	//Intermediary func(T, K, S0, r);
+	//std::cout << "Implied volatility:  " << impliedVol(func, Price) << endl;
 
-		EurCall NewOption(T, K);
-		Tgt = NewOption.PriceByJDFormula(S0, sigma, r, s, m, lambda, Counter);
+	//vector<double> impVol;
+	//vector<double> impVolSigma;
 
-		Intermediary func(T, K, S0, r);
-		impVol[int(K) - 60] = SolveByBisect(&func, Tgt, LEnd, REnd, Acc) * 100;
-	}
+	//for (K = 60; K <= 150; K++) {
 
-	ofstream myfile("impvol.csv");
-	if (myfile.is_open())
-	{
-		for (int count = 0; count <= 90; count++) {
-			myfile << count + 60 << "," << impVol[count] << endl;
-		}
-		myfile.close();
-	}
+	//	OptionPtr = new EurCall(T, K);
+	//	Price = OptionPtr->PriceByJDFormula(S0, sigma, r, s, m, lambda, Counter);
+	//	Intermediary func(T, K, S0, r);
+	//	impVol.push_back(impliedVol(func, Price));
+	//}
+
+	//ofstream myfile("impvol.csv");
+	//if (myfile.is_open())
+	//{
+	//	for (unsigned int count = 0; count < impVol.size(); count++) {
+	//		myfile << count + 60 << ";" << impVol[count] << endl;
+	//	}
+	//	myfile.close();
+	//}
 	
 	system("pause");
 	return 0;

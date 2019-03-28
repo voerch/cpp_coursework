@@ -16,8 +16,7 @@ void BSModel::GenerateSamplePath
    double St = S0;
    for(int k=0; k<m; k++)
    {
-      S[k]= St*exp((r-sigma*sigma*0.5)*(T/m)
-                    +sigma*sqrt(T/m)*Gauss());
+      S[k]= St*exp((r-sigma*sigma*0.5)*(T/m)+sigma*sqrt(T/m)*Gauss());
       St=S[k];
    }
 }

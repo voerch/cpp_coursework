@@ -112,11 +112,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EurOption.cpp" />
+    <ClCompile Include="JDModel.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stats.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EurOption.h" />
+    <ClInclude Include="JDModel.h" />
     <ClInclude Include="Solver03.h" />
+    <ClInclude Include="stats.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

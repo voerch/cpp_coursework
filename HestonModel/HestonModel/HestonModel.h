@@ -11,7 +11,7 @@ typedef vector<double> SamplePath;
 class HestonModel
 {
    public:
-	   double S0, r, sigma0Sq, sigmaSq, timestep, a, eta, rho;
+	   double S0, r, sigma0Sq, sigmaSq, timestep, a, eta, rho;	
 
 		HestonModel(double S0_, double r_, double sigma0Sq_, double sigmaSq_, double timestep_, double a_, double eta_, double rho_)
 		{		

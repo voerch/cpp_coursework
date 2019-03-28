@@ -1,19 +1,16 @@
 #include "EurOption.h"
 #include <cmath>
 #include<iostream>
+#include "stats.h"
 
 double N(double x)
 {
 	return 0.5 * erfc(-x * sqrt(0.5));
 }
 
-double Factorial(double Number) {
-	double Product = 1;
-	for (int iCounter = 1; iCounter <= Number; iCounter++)
-	{
-		Product = Product * iCounter;
-	}
-	return Product;
+double Factorial(double Number) 
+{
+	return (Number > 1) ? Number * Factorial(Number - 1) : (1);
 }
 
 double EurOption::d_plus(double S0, double sigma, double r)
@@ -31,7 +28,6 @@ double EurCall::PriceByBSFormula(double S0, double sigma, double r)
 	return S0*N(d_plus(S0, sigma, r)) - K*exp(-r*T)*N(d_minus(S0, sigma, r));
 }
 
-
 double EurCall::PriceByJDFormula(double S0,	double sigma, double r, double s, double m, double lambda, int Counter)
 {
 	double sigmaN, BS, rN, Sum=0;
@@ -48,5 +44,23 @@ double EurCall::PriceByJDFormula(double S0,	double sigma, double r, double s, do
 	return Sum;
 }
 
+double EurCall::Payoff(double S)
+{
+	return (S > K) ? S - K : 0;
+}
 
+double EurOption::PriceByJDMC(JDModel Model, int samplingDates, int nPaths)
+{
+	SamplePaths SP;
+	Model.GenerateSamplePaths(SP, T, samplingDates, nPaths);
+	Stats Payoffs;
+	for (SamplePaths::iterator it = SP.begin(); it != SP.end();++it)
+	{
+		Payoffs.add(Payoff(*it));
+	}
 
+	double Price = Payoffs.mean() * exp(-Model.r * T);
+	double PricingError = Payoffs.stdev() * exp(-Model.r * T) / sqrt(double(nPaths));
+	cout << "Monte Carlo Price: " << Price << " +/- " << PricingError;
+	return Price;
+}
