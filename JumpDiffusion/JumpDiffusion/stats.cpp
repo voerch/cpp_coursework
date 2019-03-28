@@ -8,13 +8,18 @@ void Stats::add(double x)
 	return;
 }
 
+double Stats::count()
+{
+	return Count;
+}
+
 double Stats::mean()
 {
-	return Sum / double(Count);
+	return Sum / count();
 }
 
 double Stats::stdev()
 {
 	double m = mean();
-	return sqrt(Sum / Count - m * m);
+	return sqrt(SumSquared / count() - m * m);
 }

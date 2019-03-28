@@ -2,6 +2,7 @@
 #include <cmath>
 #include<iostream>
 #include "stats.h"
+#include <iomanip>
 
 double N(double x)
 {
@@ -59,8 +60,7 @@ double EurOption::PriceByJDMC(JDModel Model, int samplingDates, int nPaths)
 		Payoffs.add(Payoff(*it));
 	}
 
-	double Price = Payoffs.mean() * exp(-Model.r * T);
-	double PricingError = Payoffs.stdev() * exp(-Model.r * T) / sqrt(double(nPaths));
-	cout << "Monte Carlo Price: " << Price << " +/- " << PricingError;
-	return Price;
+	PricingError = Payoffs.stdev()*exp(-Model.r * T) / sqrt(double(nPaths));
+	
+	return Payoffs.mean() * exp(-Model.r * T);;
 }

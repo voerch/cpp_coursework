@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 #include "JDModel.h"
+
+#include <iomanip>
 using namespace std;
 
 double impliedVol(Intermediary func, double Tgt)
@@ -23,14 +25,21 @@ int main()
 	EurOption* OptionPtr;
 	OptionPtr = new EurCall(T, K);
 
-	double Price = OptionPtr->PriceByJDFormula(S0, sigma, r, s, m, lambda, Counter);
-	cout << "Analytic Price: " << Price << endl;
-	
+	double PriceAnalytic = OptionPtr->PriceByJDFormula(S0, sigma, r, s, m, lambda, Counter);
+
+	cout << fixed << setprecision(2);
+
+	cout << setw(10) << "A Price" << setw(10) << "MC Price" << setw(10) << "MC Error" << endl;
+	cout << "===============================" << endl ;
+
 	JDModel Model(S0, sigma, r, s, m, lambda);
 	int samplingDates = 52;
-	int nPaths = 76000;
-	Price = OptionPtr->PriceByJDMC(Model, samplingDates, nPaths);
+	int nPaths = 7600;
+	double PriceMC = OptionPtr->PriceByJDMC(Model, samplingDates, nPaths);
+	
+	cout << setw(10) << PriceAnalytic  << setw(10) << PriceMC << setw(10) << OptionPtr->PricingError << endl;
 
+	delete OptionPtr;
 
 	//Intermediary func(T, K, S0, r);
 	//std::cout << "Implied volatility:  " << impliedVol(func, Price) << endl;
@@ -55,6 +64,24 @@ int main()
 	//	myfile.close();
 	//}
 	
+
+	//cout << fixed << setprecision(2) << setw(10) << left;
+
+	//cout << endl << endl;
+	//cout << "Option"
+	//	 << "Price"
+	//	 << "Delta"
+	//	 << "Gamma"
+	//	 << "Theta" << endl;
+	//cout << "==================================================" << endl;
+
+
+	//cout <<  5
+	//	<<  100.565656595
+	//	<<  10
+	//	<<  2100
+	//	<<  50 << endl;
+
 	system("pause");
 	return 0;
 }
